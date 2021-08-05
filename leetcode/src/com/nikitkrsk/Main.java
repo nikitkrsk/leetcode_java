@@ -32,5 +32,10 @@ public class Main {
         boolean isPalindrome = solutions.isPalindrome(1221);
         System.out.println("isPalindrome = " + isPalindrome);
 
+        // Stone Game
+        boolean stoneGame = solutions.stoneGame(new int[] {5,3,4,5});
+        System.out.println("stoneGame = " + stoneGame);
+        boolean stoneGameSimple = solutions.stoneGame(new int[] {5,3,4,5}, true);
+        System.out.println("stoneGameSimple = " + stoneGameSimple);
     }
 }

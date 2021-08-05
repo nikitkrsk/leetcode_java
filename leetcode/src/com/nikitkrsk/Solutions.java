@@ -1,7 +1,10 @@
 package com.nikitkrsk;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
+import java.util.stream.IntStream;
 
 public class Solutions {
     public int removeElement(int[] nums, int val) {
@@ -98,4 +101,35 @@ public class Solutions {
         }
         return revNum == x;
     }
+
+    public boolean stoneGame(int[] piles) {
+        int alex = 0;
+        int lee = 0;
+        int first = 0;
+        int last = piles.length-1;
+        while(first < last){
+            if(piles[first] > piles[last]){
+                alex += piles[first];
+                first++;
+            }
+            else{
+                alex += piles[last];
+                last--;
+            }
+            if(piles[first] > piles[last]){
+                lee += piles[last];
+                last--;
+            }
+            else{
+                lee += piles[first];
+                first++;
+            }
+        }
+        return (alex > lee);
+    }
+
+    public boolean stoneGame(int[] piles, boolean Simple) {
+        return true;
+    }
 }
+
