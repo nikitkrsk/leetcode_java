@@ -1,13 +1,12 @@
 package com.nikitkrsk;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class Solutions {
-    public int removeElement(int[] nums, int val) {
+    public int removeElement(int @NotNull [] nums, int val) {
         final int len = nums.length;
         if (len <= 0)
             return len;
@@ -22,7 +21,7 @@ public class Solutions {
         return newIndex;
     }
 
-    public int[] twoSum(int[] nums, int target) {
+    public int[] twoSum(int @NotNull [] nums, int target) {
         var map = new HashMap<Integer, Integer>();
         for (var i = 0; i < nums.length; i++) {
             var diff = target - nums[i];
@@ -34,7 +33,7 @@ public class Solutions {
 
     }
 
-    public boolean isValid(String s) {
+    public boolean isValid(@NotNull String s) {
         Stack<Character> stack = new Stack<>();
         HashMap<Character, Character> hs = new HashMap<>();
         hs.put('(', ')');
@@ -57,7 +56,7 @@ public class Solutions {
         return stack.size() == 0;
     }
 
-    public int removeDuplicates(int[] nums) {
+    public int removeDuplicates(int @NotNull [] nums) {
         final int len = nums.length;
         if (len <= 0)
             return len;
@@ -72,7 +71,7 @@ public class Solutions {
         return newIndex;
     }
 
-    public int strStr(String haystack, String needle) {
+    public int strStr(@NotNull String haystack, @NotNull String needle) {
         final int needleLen = needle.length();
         final int haystackLen = haystack.length();
         if (needleLen <= 0)
@@ -102,25 +101,23 @@ public class Solutions {
         return revNum == x;
     }
 
-    public boolean stoneGame(int[] piles) {
+    public boolean stoneGame(int @NotNull [] piles) {
         int alex = 0;
         int lee = 0;
         int first = 0;
-        int last = piles.length-1;
-        while(first < last){
-            if(piles[first] > piles[last]){
+        int last = piles.length - 1;
+        while (first < last) {
+            if (piles[first] > piles[last]) {
                 alex += piles[first];
                 first++;
-            }
-            else{
+            } else {
                 alex += piles[last];
                 last--;
             }
-            if(piles[first] > piles[last]){
+            if (piles[first] > piles[last]) {
                 lee += piles[last];
                 last--;
-            }
-            else{
+            } else {
                 lee += piles[first];
                 first++;
             }
@@ -131,5 +128,40 @@ public class Solutions {
     public boolean stoneGame(int[] piles, boolean Simple) {
         return true;
     }
+
+    public int searchInsert(int[] nums, int target) {
+        int l = 0, r = nums.length - 1;
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            if (nums[m] == target)
+                return m;
+            if (nums[m] < target)
+                l = m + 1;
+            else
+                r = m - 1;
+        }
+        return 0;
+    }
+
+
+    // SLOW - 14ms
+    public String shiftingLetters(String s, int[] shifts) {
+        final int shiftsLength = shifts.length - 1;
+        char[] arr = s.toCharArray();
+        int tmp = 0;
+        for (int i = shiftsLength; i >= 0; i--) {
+            tmp += shifts[i];
+            if (tmp >= 26) {
+                tmp %= 26;
+            }
+            int ascii = (int) arr[i] + tmp;
+            if (ascii > 122) {
+                ascii -= 26;
+            }
+            arr[i] = (char) ascii;
+        }
+        return String.valueOf(arr);
+    }
+
 }
 

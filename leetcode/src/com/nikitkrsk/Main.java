@@ -37,5 +37,9 @@ public class Main {
         System.out.println("stoneGame = " + stoneGame);
         boolean stoneGameSimple = solutions.stoneGame(new int[] {5,3,4,5}, true);
         System.out.println("stoneGameSimple = " + stoneGameSimple);
+
+        // Shifting Letters
+        String shiftingLetters = solutions.shiftingLetters("bad",new int[] {10, 20, 30} );
+        System.out.println("shiftingLetters = " + shiftingLetters);
     }
 }
